@@ -1,11 +1,7 @@
 import './Logo.css'
 import React from 'react'
-
-
-const logo = () => {
-    <aside className="logo">
+const logo = (props) =>
+<aside className="logo">
     Logo
-    </aside>
-}
+</aside>
 export default logo
- 

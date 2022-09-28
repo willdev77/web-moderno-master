@@ -2,7 +2,7 @@ import './Header.css'
 import React from 'react'
 
 
-const header = () => {
+const header = (props) => {
     <header className="header">
         Cabeçalho
     </header>
