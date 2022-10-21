@@ -1,9 +1,9 @@
-:root {
+    :root {
     --bg-dark: #1a2f3a;
     
     --logo-height: 100px;
     --header-height: 100px;
-    --aside-height: 225px;
+    --aside-width: 225px;
     --footer-height: 40px;
 
     --shadow:
@@ -14,4 +14,43 @@
 *{
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
+}
+
+/*layout em Grid*/
+
+.app{
+    margin: 0px;
+    display: grid;
+    grid-template-columns: var(--aside-width) 1fr;
+    grid-template-rows: 
+        var(--header-height)
+        1fr
+        var(--footer-height);
+
+    grid-template-areas: 
+        "logo header"
+        "menu content"
+        "menu footer";
+        height: 100vh;
+        background-color: #f5f5f5;
+}
+
+aside.logo {
+    grid-area: logo;
+}
+
+header.header{
+    grid-area: header;
+}
+
+aside.menu-area{
+    grid-area: menu;
+}
+
+main.content{
+    grid-area: content;
+}
+
+footer.footer{
+    grid-area: footer;
 }
