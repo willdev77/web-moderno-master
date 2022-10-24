@@ -4,7 +4,7 @@ import React from 'react'
 
 export default props =>
 <aside className="logo">
-    <a href="/" className="logo">
+    <Link to="/" className="logo">
         <img src={logo} alt="logo" />
-    </a>
+    </Link>
 </aside>
