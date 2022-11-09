@@ -8,7 +8,7 @@ const headerProps = {
     subtitle: 'Cadastro de usuários: Incluir, Listar, Alterar e Excluir!'
 }
 
-const baseUrl = 'http://localhost:3001/users'
+const baseUrl = 'http://localhost:3000/users'
 const initialState = {
     user: {name: '', email: ''},
     list: []
@@ -33,16 +33,16 @@ export default class UserCrud extends Component {
         const url = user.id ? `${baseUrl}/${user.id}` : baseUrl
         axios[method](url, user)
             .then(resp => {
-                const list = this.getUptadeList(resp.data)
+                const list = this.getUpdatedList(resp.data)
                 this.setState({user: initialState.user, list})
             })
     }
-    getUptadeList(user, add=true){
+    getUpdatedList(user, add=true){
         const list = this.state.list.filter(u => u.id !== user.id)
-        if(user) list.unshift(user)
+        if(add) list.unshift(user)
         return list
     }
-    uptadeField(event){
+    updateField(event){
         const user = {...this.state.user}
         user[event.target.name] = event.target.value
         this.setState({user})
@@ -58,7 +58,7 @@ export default class UserCrud extends Component {
                         <input type="text" className="form-control" 
                         name="name"
                         value={this.state.user.name}
-                        onChange={e => this.uptadeField(e)}
+                        onChange={e => this.updateField(e)}
                         placeholder="Digite o nome..."/>
                         </div> 
                     </div>
@@ -69,7 +69,7 @@ export default class UserCrud extends Component {
                             <input type="text" className="form-control"
                             name="email"
                             value={this.state.user.email}
-                            onChange={e => this.uptadeField(e)}
+                            onChange={e => this.updateField(e)}
                             placeholder="Digite o e-mail..."/>
                         </div>
                     </div>
@@ -84,7 +84,7 @@ export default class UserCrud extends Component {
                         </button>
 
                         <button className="btn btn-secondary ml-2"
-                        onClick={e => this.claer(e)}>
+                        onClick={e => this.clear(e)}>
                             Cancelar
                         </button>
                     </div>
@@ -99,7 +99,7 @@ export default class UserCrud extends Component {
 
     remove(user){
         axios.delete(`${baseUrl}/${user.id}`).then(resp => {
-            const list = this.getUptadeList(user, false)
+            const list = this.getUpdatedList(user, false)
             this.setState({list})
         })
     }
